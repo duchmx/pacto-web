@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+    /* ── Navy ── */
+    --color-navy-950: #060d1a;
+    --color-navy-900: #0a1628;
+    --color-navy-800: #101f40;
+    /* PRIMARY */
+    --color-navy-700: #1a3060;
+    --color-navy-600: #243f7a;
+    --color-navy-400: #4a6baa;
+    --color-navy-200: #a0b4d6;
+    --color-navy-100: #cfdae8;
+    --color-navy-50: #edf1f7;
+
+    /* ── Copper ── */
+    --color-copper-900: #3d2408;
+    --color-copper-800: #5c3610;
+    --color-copper-700: #7a4a1a;
+    --color-copper-600: #ab7845;
+    /* PRIMARY */
+    --color-copper-500: #c2924f;
+    --color-copper-400: #d4a96a;
+    --color-copper-300: #e2c28e;
+    --color-copper-200: #edd9b5;
+    --color-copper-100: #f5ecda;
+    --color-copper-50: #faf5ec;
+
+    /* ── Warm neutrals (puente entre navy y copper) ── */
+    --color-warm-900: #1a1714;
+    --color-warm-800: #2e2a25;
+    --color-warm-600: #645e58;
+    --color-warm-400: #a09890;
+    --color-warm-200: #d6d1c7;
+    --color-warm-100: #edeae3;
+    --color-warm-50: #f8f6f2;
+
+    /* ── Tipografías ── */
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "DM Sans", system-ui, sans-serif;
+    --font-mono: "DM Mono", "Courier New", monospace;
+
+    /* ── Espaciado extra ── */
+    --spacing-18: 4.5rem;
+    --spacing-22: 5.5rem;
+    --spacing-30: 7.5rem;
+}
+
+/* ============================================================
+   ESTILOS BASE GLOBALES
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    background-color: var(--color-warm-50);
+    color: var(--color-navy-800);
+    line-height: 1.7;
+}
+
+/* ── Tipografía display ── */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+/* ── Selección de texto ── */
+::selection {
+    background-color: var(--color-copper-100);
+    color: var(--color-navy-800);
+}
+
+/* ── Scrollbar sutil ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-warm-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-warm-200);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-copper-400);
+}
+
+/* ============================================================
+   UTILIDADES DE DISEÑO PERSONALIZADAS
+   ============================================================ */
+
+/* Regla decorativa copper (bajo eyebrows y en secciones hero) */
+.copper-rule {
+    width: 2rem;
+    height: 2px;
+    background-color: var(--color-copper-600);
+    display: block;
+}
+
+/* Label monoespaciado — año, categoría, ciudad */
+.label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-copper-600);
+}
+
+/* Caption muted — datos secundarios */
+.caption-mono {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-warm-400);
+}
+
+/* Overlay para fotos de proyecto */
+.overlay-project {
+    background: linear-gradient(to top,
+            rgba(6, 13, 26, 0.92) 0%,
+            rgba(6, 13, 26, 0.1) 60%,
+            transparent 100%);
+}
+
+/* Transición base */
+.transition-base {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,11 +1,412 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ui/ServiceCard.astro";
+import ProjectAccordionItem from "../components/ui/ProjectAccordionItem.astro";
+import { Icon } from "astro-icon/components";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = await getCollection("projects");
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="Inicio"
+  description="Pacto Inmobiliario. Construimos relaciones sólidas para desarrollar proyectos inmobiliarios de gran rentabilidad."
+>
+  <!-- 1. Hero Section -->
+  <section
+    class="h-[calc(100vh-128px)] min-h-[600px] w-full relative flex flex-col justify-center items-center text-center px-6 overflow-hidden"
+  >
+    <!-- Background Image (Light/Daytime Architecture) -->
+    <div
+      class="absolute inset-0 z-0 bg-cover bg-center"
+      style="background-image: url('/images/hero_bg.jpg');"
+    >
+    </div>
+    <!-- Light Gradient Overlay -->
+    <div
+      class="absolute inset-0 z-10 opacity-80 bg-linear-to-t from-warm-50 via-warm-50/60 to-warm-50/20"
+    >
+    </div>
+
+    <div class="z-10 flex flex-col items-center mt-12 md:mt-24">
+      <!-- Logo as Title -->
+      <div class="mb-12 flex flex-col items-center">
+        <img
+          src="/images/branding/logo_navy.png"
+          alt="Pacto Inmobiliario - Forjando Legado"
+          class="h-28 md:h-40 w-auto object-contain drop-shadow-sm"
+        />
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6 mt-8">
+        <a
+          href="#contacto"
+          class="px-8 py-4 bg-copper-600 text-warm-50 hover:bg-copper-500 transition-base tracking-widest text-sm uppercase font-medium shadow-lg"
+        >
+          Contáctanos
+        </a>
+        <a
+          href="#proyectos"
+          class="px-8 py-4 border border-navy-900/30 text-navy-900 hover:bg-navy-900 hover:text-warm-50 transition-base tracking-widest text-sm uppercase"
+        >
+          Ver Proyectos
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 z-10 animate-bounce">
+      <svg
+        class="w-6 h-6 text-warm-50/50"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 2. Buffer 1 -->
+  <section
+    class="py-28 md:py-36 bg-navy-950 px-6 border-b border-navy-800 flex justify-center overflow-hidden"
+  >
+    <div class="flex flex-col items-start max-w-4xl w-full">
+      <span
+        class="text-sm md:text-2xl tracking-[0.2em] font-display text-warm-50/70 uppercase"
+      >
+        Construimos
+      </span>
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-display text-copper-500 italic font-light md:mb-2 ml-6 md:ml-20"
+      >
+        relaciones sólidas
+      </h2>
+      <span
+        class="text-sm md:text-2xl tracking-[0.2em] font-display text-warm-50/70 uppercase ml-4 md:ml-12"
+      >
+        para desarrollar proyectos inmobiliarios de
+      </span>
+      <h2
+        class="text-4xl md:text-6xl lg:text-7xl font-display text-copper-500 italic font-light self-end mr-2 md:mr-12"
+      >
+        gran rentabilidad
+      </h2>
+    </div>
+  </section>
+
+  <!-- 3. Nosotros (Asymmetrical) -->
+  <section id="nosotros" class="py-32 bg-warm-50 px-6 overflow-hidden">
+    <div
+      class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+    >
+      <!-- Text Side -->
+      <div class="order-2 lg:order-1 relative z-10">
+        <span class="label-mono mb-4 block">Nosotros</span>
+        <h2
+          class="text-4xl md:text-5xl font-display text-navy-900 mb-8 leading-tight"
+        >
+          Alianzas duraderas <br /><span class="text-copper-600 italic"
+            >que cimientan una historia</span
+          >
+        </h2>
+        <div class="text-navy-700 space-y-6 text-lg font-light leading-relaxed">
+          <p>
+            Tres generaciones de experiencia consolidando proyectos de
+            prestigio. Cada desarrollo que lleva nuestro nombre respalda nuestra
+            reputación y dedicación. Como socios mayoritarios en cada uno de los
+            proyectos en nuestro portafolio, aseguramos la viabilidad y el éxito
+            desde su concepción.
+          </p>
+          <p>
+            Hemos sabido adaptarnos ágilmente a las demandas del mercado
+            mediante alianzas estratégicas, brindando flexibilidad y
+            garantizando resultados exitosos.
+          </p>
+        </div>
+        <div class="mt-10">
+          <a
+            href="/nosotros"
+            class="group inline-flex items-center gap-2 text-copper-700 hover:text-copper-500 font-medium transition-base uppercase tracking-widest text-xs"
+          >
+            <span>Conoce nuestra historia</span>
+            <svg
+              class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Asymmetrical Images Side -->
+      <div class="order-1 lg:order-2 relative h-[500px] md:h-[600px] w-full">
+        <!-- Image 1 (Taller / Back) -->
+        <div
+          class="absolute top-0 right-0 w-[80%] h-[85%] overflow-hidden shadow-2xl"
+        >
+          <div class="w-full h-full -scale-x-100">
+            <img
+              src="/images/nosotros_1.jpg"
+              alt="Terraza en Laguna Park"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 origin-bottom"
+            />
+          </div>
+        </div>
+        <!-- Image 2 (Shorter / Front Offset) -->
+        <div
+          class="absolute bottom-0 left-0 w-[70%] h-[45%] bg-copper-200 overflow-hidden shadow-2xl border-4 md:border-8 border-warm-50 z-10"
+        >
+          <img
+            src="/images/nosotros_2.jpg"
+            alt="Portón en Zavana"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 origin-center"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Servicios (Expertise) -->
+  <section
+    id="servicios"
+    class="py-32 bg-navy-950 px-6 border-t border-navy-800"
+  >
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <span class="label-mono mb-4 block tracking-[0.2em]"
+          >Nuestro Expertise</span
+        >
+        <h2 class="text-4xl md:text-5xl font-display text-warm-50">
+          Servicios <span class="italic text-copper-500">Integrales</span>
+        </h2>
+        <div class="flex justify-center mt-6">
+          <span class="copper-rule"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <!-- Card 1 -->
+        <ServiceCard
+          icon="lucide:calculator"
+          title="Valoración"
+          description="Analizamos inteligentemente el mercado para determinar el mejor uso de la propiedad."
+        />
+
+        <!-- Card 2 -->
+        <ServiceCard
+          icon="lucide:layout-template"
+          title="Configuración"
+          description="Estructuramos cada etapa del desarrollo, desde la factibilidad hasta la comercialización."
+        />
+
+        <!-- Card 3 -->
+        <ServiceCard
+          icon="lucide:landmark"
+          title="Inversión"
+          description="Aportamos experiencia y capital para el desarrollo de proyectos excepcionales."
+        />
+
+        <!-- Card 4 -->
+        <ServiceCard
+          icon="lucide:key"
+          title="Colocación"
+          description="Encontramos al comprador idóneo para cada predio encomendado."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Buffer 2 (Parallax) -->
+  <section
+    class="relative py-40 overflow-hidden bg-navy-950 flex items-center justify-center"
+  >
+    <!-- Parallax Image Container -->
+    <div
+      class="absolute inset-0 z-0 bg-cover bg-center bg-fixed opacity-40 mix-blend-luminosity grayscale"
+      style="background-image: url('/images/buffer_3.jpg');"
+    >
+    </div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 z-1 bg-navy-950/70"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <h2
+        class="text-3xl md:text-5xl font-display text-copper-100 font-light italic leading-tight"
+      >
+        "Planeamos cada proyecto con eficiente minuciosidad"
+      </h2>
+    </div>
+  </section>
+
+  <!-- 6. Proyectos (Accordion) -->
+  <section id="proyectos" class="py-32 bg-warm-50">
+    <div
+      class="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-end gap-6"
+    >
+      <div>
+        <span class="label-mono mb-4 block">Portafolio</span>
+        <h2
+          class="text-4xl md:text-5xl font-display text-navy-900 leading-tight"
+        >
+          Proyectos <span class="italic text-copper-600">Destacados</span>
+        </h2>
+      </div>
+      <a
+        href="/proyectos"
+        class="group flex items-center gap-2 text-sm tracking-widest uppercase font-medium text-navy-600 hover:text-copper-600 transition-colors"
+      >
+        <span
+          class="border-b border-transparent group-hover:border-copper-600 transition-colors pb-0.5"
+          >Ver todos los proyectos</span
+        >
+        <Icon
+          name="lucide:arrow-right"
+          class="w-4 h-4 transform group-hover:translate-x-1 translate-y-0.5 transition-transform mb-1.5"
+        />
+      </a>
+    </div>
+
+    <!-- Accordion Gallery (CSS Flexbox based) -->
+    <div
+      class="w-full h-[60vh] min-h-[500px] flex flex-col md:flex-row overflow-hidden border-y border-warm-200"
+    >
+      {
+        projects.map((project, index) => (
+          <ProjectAccordionItem
+            href={`/proyectos/${project.id}`}
+            image={project.data.cover}
+            category={project.data.type}
+            title={project.data.title}
+            isLast={index === projects.length - 1}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 6.5. Alianzas Estratégicas (Partners) -->
+  <section class="py-24 bg-warm-50 border-t border-warm-200 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+      <!-- Text Side -->
+      <div
+        class="w-full md:w-1/3 text-center md:text-right md:pr-12 md:border-r border-warm-200 mb-12 md:mb-0"
+      >
+        <h2
+          class="text-4xl md:text-5xl font-display text-navy-900 leading-tight"
+        >
+          Alianzas <br /><span class="italic text-copper-600">Estratégicas</span
+          >
+        </h2>
+      </div>
+
+      <!-- Logos Side -->
+      <div
+        class="w-full md:w-2/3 flex flex-row justify-between items-center md:pl-12 gap-4"
+      >
+        <div class="flex-1 flex justify-center">
+          <img
+            src="/images/partners/arqlan.png"
+            alt="Arqlan"
+            class="w-24 md:w-36 lg:w-44 aspect-square object-contain"
+          />
+        </div>
+        <div class="flex-1 flex justify-center">
+          <img
+            src="/images/partners/concoord.jpg"
+            alt="Concoord"
+            class="w-24 md:w-36 lg:w-44 aspect-square object-contain"
+          />
+        </div>
+        <div class="flex-1 flex justify-center">
+          <img
+            src="/images/partners/tribu.png"
+            alt="Tribu"
+            class="w-24 md:w-36 lg:w-44 aspect-square object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Contacto Minimalista -->
+  <section
+    id="contacto"
+    class="py-32 bg-warm-100 px-6 border-b border-copper-700/20"
+  >
+    <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
+      <span class="label-mono mb-4 block">Hablemos</span>
+      <h2 class="text-4xl md:text-5xl font-display text-navy-900 mb-16">
+        Inicia tu <span class="italic text-copper-600">proyecto</span>
+        <br /> con nosotros
+      </h2>
+
+      <!-- Minimalist Form Skeleton -->
+      <form class="w-full flex flex-col gap-10">
+        <div class="flex flex-col md:flex-row gap-10">
+          <div class="relative flex-1 group text-left">
+            <input
+              type="text"
+              id="name"
+              placeholder="Tu Nombre"
+              class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
+              required
+            />
+            <div
+              class="absolute bottom-0 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+            >
+            </div>
+          </div>
+          <div class="relative flex-1 group text-left">
+            <input
+              type="email"
+              id="email"
+              placeholder="Correo Electrónico"
+              class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
+              required
+            />
+            <div
+              class="absolute bottom-0 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+            >
+            </div>
+          </div>
+        </div>
+
+        <div class="relative group mt-4 text-left">
+          <textarea
+            id="message"
+            rows="1"
+            placeholder="¿En qué te podemos ayudar?"
+            class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors resize-none peer"
+            required></textarea>
+          <div
+            class="absolute bottom-1 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+          >
+          </div>
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <button
+            type="submit"
+            class="group relative px-12 py-4 outline-none overflow-hidden bg-navy-950 text-warm-50 text-xs tracking-[0.2em] uppercase font-medium hover:bg-navy-900 transition-colors"
+          >
+            <span class="relative z-10 transition-colors">Enviar Mensaje</span>
+            <div
+              class="absolute inset-0 bg-copper-600/10 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0"
+            >
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

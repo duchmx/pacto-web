@@ -1,0 +1,81 @@
+---
+// Footer.astro
+// Componente de pie de página
+---
+
+<footer class="bg-navy-950 text-warm-50 py-16 border-t border-copper-700">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <!-- Columna 1: Brand / Info -->
+    <div class="flex flex-col gap-4">
+      <a
+        href="/"
+        class="text-3xl font-display text-copper-100 font-semibold inline-block"
+      >
+        Pacto Inmobiliario
+      </a>
+      <p class="text-sm text-navy-200 mt-2 max-w-sm">
+        Tres generaciones de experiencia forjando legado.
+      </p>
+    </div>
+
+    <!-- Columna 2: Links -->
+    <div class="flex flex-col gap-3">
+      <h3 class="label-mono mb-2 text-copper-400">Navegación</h3>
+      <a
+        href="/"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base"
+        >Inicio</a
+      >
+      <a
+        href="/nosotros"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base"
+        >Nosotros</a
+      >
+      <a
+        href="/servicios"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base"
+        >Servicios</a
+      >
+      <a
+        href="/proyectos"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base"
+        >Proyectos</a
+      >
+      <a
+        href="/contacto"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base"
+        >Contacto</a
+      >
+    </div>
+
+    <!-- Columna 3: Contacto -->
+    <div class="flex flex-col gap-3">
+      <h3 class="label-mono mb-2 text-copper-400">Contacto</h3>
+      <p class="text-sm text-navy-200">
+        Torre Banorte - 3er Piso<br />
+        Prol. Paseo Montejo 310, Interior 14<br />
+        Col. Gonzalo Guerrero, 97118<br />
+        Mérida, YUC México
+      </p>
+      <a
+        href="mailto:hola@pacto.mx"
+        class="text-sm text-navy-200 hover:text-copper-400 transition-base mt-2"
+        >hola@pacto.mx</a
+      >
+      <p class="text-sm text-navy-200">+52 999 948 2748</p>
+    </div>
+  </div>
+
+  <div
+    class="max-w-7xl mx-auto px-6 mt-16 pt-6 border-t border-navy-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-navy-400"
+  >
+    <p>
+      &copy; {new Date().getFullYear()} Pacto Inmobiliario. Todos los derechos reservados.
+    </p>
+    <div class="flex gap-4 mt-4 md:mt-0">
+      <a href="#" class="hover:text-copper-400 transition-base"
+        >Aviso de Privacidad</a
+      >
+    </div>
+  </div>
+</footer>

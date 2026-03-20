@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+// Header.astro
+// Componente de navegación principal
+---
+
+<header
+  class="w-full bg-navy-950 backdrop-blur-md sticky top-0 z-50 border-b border-navy-800"
+>
+  <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="transition-base hover:opacity-80 block">
+      <img
+        src="/images/branding/icon_copper.png"
+        alt="Pacto"
+        class="h-10 md:h-12 w-auto"
+      />
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex gap-8">
+      <a
+        href="/#nosotros"
+        class="text-shadow-md tracking-wide text-warm-50 hover:text-copper-500 transition-base"
+        >Nosotros</a
+      >
+      <a
+        href="/#servicios"
+        class="text-md tracking-wide text-warm-50 hover:text-copper-500 transition-base"
+        >Servicios</a
+      >
+      <a
+        href="/#proyectos"
+        class="text-md tracking-wide text-warm-50 hover:text-copper-500 transition-base"
+        >Proyectos</a
+      >
+      <a
+        href="/#contacto"
+        class="text-md tracking-wide text-warm-50 hover:text-copper-500 transition-base"
+        >Contacto</a
+      >
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden text-warm-50 cursor-pointer hover:text-copper-500 transition-colors"
+    >
+      <Icon name="lucide:menu" class="w-6 h-6" />
+    </button>
+  </div>
+</header>
