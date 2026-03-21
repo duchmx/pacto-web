@@ -239,12 +239,17 @@ const projects = await getCollection("projects");
     <!-- Overlay -->
     <div class="absolute inset-0 z-1 bg-navy-950/70"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto w-full px-6 flex flex-col">
       <h2
-        class="text-3xl md:text-5xl font-display text-copper-100 font-light italic leading-tight"
+        class="text-3xl md:text-5xl font-display text-copper-100 font-light leading-tight self-start"
       >
-        "Planeamos cada proyecto con eficiente minuciosidad"
+        Planeamos cada proyecto con
       </h2>
+      <span
+        class="text-3xl md:text-5xl font-display text-copper-500 italic font-bold leading-tight self-end"
+      >
+        eficiente minuciosidad
+      </span>
     </div>
   </section>
 
