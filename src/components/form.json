@@ -1,0 +1,96 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.6",
+    "body": [
+          {
+            "type": "ColumnSet",
+            "columns": [
+              {
+                "type": "Column",
+                "width": "auto",
+                "items": [
+                  {
+                    "type": "Image",
+                    "url": "https://img.icons8.com/fluency/48/user-male-circle.png",
+                    "size": "Small",
+                    "style": "Person"
+                  }
+                ]
+              },
+              {
+                "type": "Column",
+                "width": "stretch",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Nuevo Lead: {{ $json.body.name }}",
+                    "weight": "Bolder",
+                    "size": "Medium",
+                    "wrap": true
+                  },
+                  {
+                    "type": "TextBlock",
+                    "spacing": "None",
+                    "text": "Pacto.mx - Formulario de Contacto",
+                    "isSubtle": true,
+                    "wrap": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FactSet",
+            "facts": [
+              {
+                "title": "Email:",
+                "value": "{{ $json.body.email }}"
+              },
+              {
+                "title": "Teléfono:",
+                "value": "{{ $json.body.phone }}"
+              }
+            ],
+            "margin": "ExtraLarge"
+          },
+          {
+            "type": "Container",
+            "style": "emphasis",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "Mensaje:",
+                "weight": "Bolder",
+                "wrap": true
+              },
+              {
+                "type": "TextBlock",
+                "text": "{{ $json.body.message }}",
+                "wrap": true
+              }
+            ],
+            "bleed": true
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.OpenUrl",
+            "title": "📞 Llamar",
+            "url": "tel:{{ $json.body.phone }}"
+          },
+          {
+            "type": "Action.OpenUrl",
+            "title": "💬 WhatsApp",
+            "url": "https://wa.me/{{ $json.body.phone.replace('+', '') }}"
+          },
+          {
+            "type": "Action.OpenUrl",
+            "title": "📧 Email",
+            "url": "mailto:{{ $json.body.email }}?subject=Contacto desde la Web - Pacto.mx"
+          }
+        ]
+    
+}
+    
+  

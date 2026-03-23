@@ -323,63 +323,167 @@ const projects = await getCollection("projects");
         <br /> con nosotros
       </h2>
 
-      <!-- Minimalist Form Skeleton -->
-      <form class="w-full flex flex-col gap-10">
-        <div class="flex flex-col md:flex-row gap-10">
-          <div class="relative flex-1 group text-left">
-            <input
-              type="text"
-              id="name"
-              placeholder="Tu Nombre"
-              class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
-              required
-            />
-            <div
-              class="absolute bottom-0 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
-            >
+      <!-- Minimalist Form & Success Message -->
+      <div id="form-container" class="w-full">
+        <form id="contact-form" class="w-full flex flex-col gap-10">
+          <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
+            <div class="relative flex-[1.5] group text-left">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Tu Nombre"
+                class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
+                required
+              />
+              <div
+                class="absolute bottom-0 left-0 h-px w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+              >
+              </div>
+            </div>
+            <div class="relative flex-[1.5] group text-left">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Correo Electrónico"
+                class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
+              />
+              <div
+                class="absolute bottom-0 left-0 h-px w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+              >
+              </div>
+            </div>
+            <div class="relative flex-1 group text-left">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Teléfono"
+                class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
+              />
+              <div
+                class="absolute bottom-0 left-0 h-px w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+              >
+              </div>
             </div>
           </div>
-          <div class="relative flex-1 group text-left">
-            <input
-              type="email"
-              id="email"
-              placeholder="Correo Electrónico"
-              class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors peer"
-              required
-            />
-            <div
-              class="absolute bottom-0 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
-            >
-            </div>
-          </div>
-        </div>
 
-        <div class="relative group mt-4 text-left">
-          <textarea
-            id="message"
-            rows="1"
-            placeholder="¿En qué te podemos ayudar?"
-            class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors resize-none peer"
-            required></textarea>
+          <div class="relative group mt-4 text-left">
+            <textarea
+              id="message"
+              name="message"
+              rows="1"
+              placeholder="¿En qué te podemos ayudar?"
+              class="w-full bg-transparent border-b border-navy-800/20 py-3 px-0 text-navy-900 placeholder:text-navy-400 font-light focus:outline-none focus:border-transparent transition-colors resize-none peer"
+              required></textarea>
+            <div
+              class="absolute bottom-1 left-0 h-px w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+            >
+            </div>
+          </div>
+
           <div
-            class="absolute bottom-1 left-0 h-[1px] w-0 bg-copper-600 transition-all duration-500 peer-focus:w-full"
+            id="form-error"
+            class="hidden text-red-500 text-sm md:text-base text-left font-light mt-2"
           >
+            * Por favor proporciona un correo electrónico o teléfono válido.
           </div>
-        </div>
 
-        <div class="mt-12 flex justify-center">
-          <button
-            type="submit"
-            class="group relative px-12 py-4 outline-none overflow-hidden bg-navy-950 text-warm-50 text-xs tracking-[0.2em] uppercase font-medium hover:bg-navy-900 transition-colors"
-          >
-            <span class="relative z-10 transition-colors">Enviar Mensaje</span>
-            <div
-              class="absolute inset-0 bg-copper-600/10 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0"
+          <div class="mt-8 flex justify-center">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="group relative px-12 py-4 outline-none overflow-hidden bg-navy-950 text-warm-50 text-xs tracking-[0.2em] uppercase font-medium hover:bg-navy-900 transition-colors"
             >
-            </div>
-          </button>
+              <span id="submit-text" class="relative z-10 transition-colors"
+                >Enviar Mensaje</span
+              >
+              <div
+                class="absolute inset-0 bg-copper-600/10 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0"
+              >
+              </div>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success Message (Hidden by default) -->
+        <div
+          id="success-msg"
+          class="hidden flex-col items-center justify-center py-16 px-6 border border-copper-600/20 bg-warm-50/50 mt-8 shadow-[0_0_40px_rgba(0,0,0,0.03)]"
+        >
+          <h3 class="text-3xl md:text-4xl font-display text-navy-900 mb-4">
+            ¡Gracias por escribirnos!
+          </h3>
+          <p class="text-navy-700 font-light text-lg">
+            Nos pondremos en contacto en un momento.
+          </p>
         </div>
-      </form>
+      </div>
+
+      <script>
+        const form = document.getElementById(
+          "contact-form",
+        ) as HTMLFormElement | null;
+        const successMsg = document.getElementById("success-msg");
+        const errorMsg = document.getElementById("form-error");
+        const emailInput = document.getElementById("email") as HTMLInputElement;
+        const phoneInput = document.getElementById("phone") as HTMLInputElement;
+        const submitBtn = document.getElementById(
+          "submit-btn",
+        ) as HTMLButtonElement;
+        const submitText = document.getElementById("submit-text");
+
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            const isPhoneValid = phone.length >= 8;
+            const isEmailValid = email.length > 3 && email.includes("@");
+
+            if (!isEmailValid && !isPhoneValid) {
+              if (errorMsg) errorMsg.classList.remove("hidden");
+              return;
+            }
+
+            if (errorMsg) errorMsg.classList.add("hidden");
+            if (submitBtn && submitText) {
+              submitText.textContent = "Enviando...";
+              submitBtn.disabled = true;
+              submitBtn.classList.add("opacity-70", "cursor-not-allowed");
+            }
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Auto-append default +52 prefix for webhook standard if missing
+            let finalPhone = String(data.phone).trim();
+            if (finalPhone && !finalPhone.startsWith("+")) {
+              finalPhone = "+52" + finalPhone;
+              data.phone = finalPhone;
+            }
+
+            // Fire-and-forget strategy securely proxied through our Vercel Backend route
+            fetch("/api/contacto", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            }).catch(console.error);
+
+            // Instantly swap form for success message (0.2s delay for realism)
+            setTimeout(() => {
+              form.classList.add("hidden");
+              if (successMsg) {
+                successMsg.classList.remove("hidden");
+                successMsg.classList.add("flex");
+              }
+            }, 400);
+          });
+        }
+      </script>
     </div>
   </section>
 </BaseLayout>
