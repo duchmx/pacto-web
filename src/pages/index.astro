@@ -5,6 +5,8 @@ import ServiceCard from "../components/ui/ServiceCard.astro";
 import ProjectAccordionItem from "../components/ui/ProjectAccordionItem.astro";
 import { Icon } from "astro-icon/components";
 
+export const prerender = true;
+
 const projects = await getCollection("projects");
 ---
 
