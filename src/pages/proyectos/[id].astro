@@ -17,10 +17,12 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 
 // Automatically load project gallery images from public folder
-const galleryImages = import.meta.glob('/public/images/projects/**/*.{jpeg,jpg,png,webp,avif}');
+const galleryImages = import.meta.glob(
+  "/public/images/projects/**/*.{jpeg,jpg,png,webp,avif}",
+);
 const projectImages = Object.keys(galleryImages)
   .filter((path) => path.startsWith(`/public/images/projects/${project.id}/`))
-  .map((path) => path.replace('/public', ''));
+  .map((path) => path.replace("/public", ""));
 ---
 
 <BaseLayout
@@ -28,18 +30,28 @@ const projectImages = Object.keys(galleryImages)
   description={`Proyecto ${project.data.type} en ${project.data.location}`}
 >
   <!-- Hero Section con la portada -->
-  <section class="relative w-full h-[60vh] min-h-[400px] flex flex-col justify-end p-6 md:p-12 overflow-hidden bg-navy-950">
+  <section
+    class="relative w-full h-[60vh] min-h-[400px] flex flex-col justify-end p-6 md:p-12 overflow-hidden bg-navy-950"
+  >
     <div
       class="absolute inset-0 z-0 bg-cover bg-center opacity-40"
       style={`background-image: url('${project.data.cover.src}')`}
-    ></div>
-    <div class="absolute inset-0 bg-linear-to-t from-navy-950 to-transparent z-10"></div>
-    
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-linear-to-t from-navy-950 to-transparent z-10"
+    >
+    </div>
+
     <div class="relative z-20 max-w-7xl mx-auto w-full">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span class="label-mono text-copper-400 mb-2 block">{project.data.type}</span>
-          <h1 class="text-4xl md:text-6xl font-display text-warm-50 tracking-tight mb-2">
+          <span class="label-mono text-copper-400 mb-2 block"
+            >{project.data.type}</span
+          >
+          <h1
+            class="text-4xl md:text-6xl font-display text-warm-50 tracking-tight mb-2"
+          >
             {project.data.title}
           </h1>
           <p class="text-xl md:text-2xl text-warm-50/80 font-light italic">
@@ -47,7 +59,9 @@ const projectImages = Object.keys(galleryImages)
           </p>
         </div>
         <div class="text-left md:text-right">
-          <p class="text-2xl font-display text-copper-100">{project.data.status}</p>
+          <p class="text-2xl font-display text-copper-100">
+            {project.data.status}
+          </p>
           <p class="text-warm-50/60 font-light">{project.data.year}</p>
         </div>
       </div>
@@ -55,74 +69,105 @@ const projectImages = Object.keys(galleryImages)
   </section>
 
   <!-- Content & Details -->
-  <section class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-3 gap-12">
+  <section
+    class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-3 gap-12"
+  >
     <!-- Main content -->
-    <div class="lg:col-span-2 prose prose-invert prose-p:text-navy-800 prose-headings:text-navy-900">
+    <div
+      class="lg:col-span-2 prose prose-invert prose-p:text-navy-800 prose-headings:text-navy-900"
+    >
       <div class="text-navy-900 font-light leading-relaxed text-lg mb-8">
         <Content />
       </div>
-      
-      {project.data.amenities && project.data.amenities.length > 0 && (
-        <div class="mb-12">
-          <h3 class="text-3xl font-display text-navy-900 mb-8 border-b border-warm-200 pb-4">Amenidades</h3>
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0 m-0">
-            {project.data.amenities.map((amenity: string) => (
-              <li class="flex items-center text-navy-800 border bg-warm-50 p-4 border-warm-200 m-0">
-                <Icon name="lucide:check" class="w-5 h-5 text-copper-600 mr-3 flex-shrink-0" />
-                <span class="font-light">{amenity}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+
+      {
+        project.data.amenities && project.data.amenities.length > 0 && (
+          <div class="mb-12">
+            <h3 class="text-3xl font-display text-navy-900 mb-8 border-b border-warm-200 pb-4">
+              Amenidades
+            </h3>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0 m-0">
+              {project.data.amenities.map((amenity: string) => (
+                <li class="flex items-center text-navy-800 border bg-warm-50 p-4 border-warm-200 m-0">
+                  <Icon
+                    name="lucide:check"
+                    class="w-5 h-5 text-copper-600 mr-3 shrink-0"
+                  />
+                  <span class="font-light">{amenity}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
     </div>
 
     <!-- Sidebar details -->
     <div class="bg-navy-950 p-8 text-warm-50 h-fit sticky top-32">
-      <h3 class="text-xl font-display text-copper-400 mb-6 border-b border-navy-800 pb-4">Ficha Técnica</h3>
-      
+      <h3
+        class="text-xl font-display text-copper-400 mb-6 border-b border-navy-800 pb-4"
+      >
+        Ficha Técnica
+      </h3>
+
       <div class="space-y-6">
         <div>
-          <span class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1">Unidades</span>
+          <span
+            class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1"
+            >Unidades</span
+          >
           <span class="font-light text-lg">{project.data.units}</span>
         </div>
         <div>
-          <span class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1">Ubicación</span>
+          <span
+            class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1"
+            >Ubicación</span
+          >
           <span class="font-light text-lg">{project.data.location}</span>
         </div>
         <div>
-          <span class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1">Año</span>
+          <span
+            class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1"
+            >Año</span
+          >
           <span class="font-light text-lg">{project.data.year}</span>
         </div>
         <div>
-          <span class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1">Estado</span>
-          <span class="font-light text-lg text-copper-100">{project.data.status}</span>
+          <span
+            class="text-xs tracking-widest text-warm-50/50 uppercase block mb-1"
+            >Estado</span
+          >
+          <span class="font-light text-lg text-copper-100"
+            >{project.data.status}</span
+          >
         </div>
       </div>
     </div>
   </section>
 
   <!-- Gallery -->
-  {projectImages.length > 0 && (
-    <section class="bg-warm-50 py-16 md:py-24 border-t border-warm-200">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-3xl md:text-5xl font-display text-navy-900 mb-12 text-center">
-          Galería del <span class="italic text-copper-600">Proyecto</span>
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectImages.map((img) => (
-            <div class="aspect-[4/3] overflow-hidden group border border-warm-200 cursor-pointer">
-              <img 
-                src={img} 
-                alt={`Galería de ${project.data.title}`} 
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          ))}
+  {
+    projectImages.length > 0 && (
+      <section class="bg-warm-50 py-16 md:py-24 border-t border-warm-200">
+        <div class="max-w-7xl mx-auto px-6">
+          <h2 class="text-3xl md:text-5xl font-display text-navy-900 mb-12 text-center">
+            Galería del <span class="italic text-copper-600">Proyecto</span>
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projectImages.map((img) => (
+              <div class="aspect-4/3 overflow-hidden group border border-warm-200 cursor-pointer">
+                <img
+                  src={img}
+                  alt={`Galería de ${project.data.title}`}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 </BaseLayout>

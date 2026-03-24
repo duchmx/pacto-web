@@ -14,7 +14,7 @@ const { href, image, category, title, isLast = false } = Astro.props;
 
 <a
   href={href}
-  class={`relative group flex-1 hover:flex-[3] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer ${
+  class={`relative group flex-1 hover:flex-3 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer ${
     !isLast ? "border-b md:border-b-0 md:border-r border-warm-200" : ""
   }`}
 >
